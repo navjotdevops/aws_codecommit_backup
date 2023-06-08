@@ -5,4 +5,4 @@ This repo have python script which take backup of aws codecommit and send it to 
 
 - Python should be installed on system.
 - AWS credentials.
-- AWS S3 bucket access
+- AWS S3 bucket access.
