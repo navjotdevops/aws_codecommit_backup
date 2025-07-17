@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI, MCP, Terraform & GitHub: A Comedy of Errors</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            padding: 60px;
+            text-align: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: slideInDown 1s ease-out;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.5s both;
+        }
+
+        .content {
+            font-size: 1.3em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .meme-text {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .code-block {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            border-left: 4px solid #00ff88;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .highlight {
+            background: rgba(255,255,0,0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .pros-cons {
+            display: flex;
+            gap: 40px;
+            margin: 20px 0;
+        }
+
+        .pros, .cons {
+            flex: 1;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .pros {
+            border-left: 4px solid #00ff88;
+        }
+
+        .cons {
+            border-left: 4px solid #ff4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">12</span>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active">
+        <h1>AI, MCP, Terraform & GitHub</h1>
+        <div class="subtitle">A Comedy of Errors (That We Call "Modern Development")</div>
+        <div class="emoji">🤖🔧☁️😅</div>
+        <div class="content">
+            <p><em>Warning: This presentation may cause existential dread about your code quality</em></p>
+        </div>
+    </div>
+
+    <!-- Slide 2: What is AI? -->
+    <div class="slide">
+        <h2>What is AI? 🤖</h2>
+        <div class="content">
+            <div class="meme-text">"It's like having a really smart intern..."</div>
+            <p>...who sometimes hallucinates and tells you 2+2=5 with complete confidence</p>
+            <div class="emoji">🧠❓</div>
+            <p>AI today: Can write Shakespeare, can't figure out why your CSS isn't working</p>
+        </div>
+    </div>
+
+    <!-- Slide 3: AI in Development -->
+    <div class="slide">
+        <h2>AI in Development Reality Check 📊</h2>
+        <div class="content">
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>✅ What AI Promises</h3>
+                    <p>• Write perfect code</p>
+                    <p>• Debug instantly</p>
+                    <p>• Generate documentation</p>
+                    <p>• Solve all problems</p>
+                </div>
+                <div class="cons">
+                    <h3>❌ What AI Delivers</h3>
+                    <p>• Code that "looks" right</p>
+                    <p>• Confidently wrong answers</p>
+                    <p>• "Documentation" (aka fiction)</p>
+                    <p>• Creates new problems</p>
+                </div>
+            </div>
+            <div class="meme-text">"AI will replace developers" - People who have never used AI</div>
+        </div>
+    </div>
+
+    <!-- Slide 4: MCP Servers -->
+    <div class="slide">
+        <h2>MCP Servers: The New Kid on the Block 🏗️</h2>
+        <div class="content">
+            <p><strong>Model Context Protocol</strong> - Because we needed another acronym</p>
+            <div class="emoji">🤝</div>
+            <p>It's like having a translator between your AI and your tools...</p>
+            <div class="code-block">
+                AI: "I want to access GitHub"<br>
+                MCP: "Hold my beer, I got this"<br>
+                GitHub: "Who are you again?"<br>
+                MCP: "It's complicated..."
+            </div>
+            <p>Think of it as the awkward middle child between AI and your actual infrastructure</p>
+        </div>
+    </div>
+
+    <!-- Slide 5: Terraform -->
+    <div class="slide">
+        <h2>Terraform: Infrastructure as Code 🏗️</h2>
+        <div class="content">
+            <div class="meme-text">"Let's automate everything!"</div>
+            <div class="emoji">📝➡️☁️</div>
+            <p>Terraform: Turning your infrastructure into code since 2014</p>
+            <div class="code-block">
+                terraform plan: "I will create 47 resources"<br>
+                terraform apply: "Actually, I'll destroy your entire AWS account"<br>
+                You: "That's... not what the plan said"<br>
+                Terraform: "¯\_(ツ)_/¯"
+            </div>
+            <p>It's like giving your infrastructure a <span class="highlight">very detailed recipe</span> and hoping it doesn't burn down the kitchen</p>
+        </div>
+    </div>
+
+    <!-- Slide 6: GitHub -->
+    <div class="slide">
+        <h2>GitHub: Where Code Goes to Die... and Live 🐙</h2>
+        <div class="content">
+            <div class="meme-text">"Git" + "Hub" = "Please don't break my code"</div>
+            <div class="emoji">🐙📁</div>
+            <p>The social network for antisocial programmers</p>
+            <div class="code-block">
+                git add .<br>
+                git commit -m "fix everything"<br>
+                git push origin main<br>
+                *Everything breaks*<br>
+                git commit -m "fix the fix"<br>
+                *More things break*<br>
+                git commit -m "I hate computers"
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: The Perfect Storm -->
+    <div class="slide">
+        <h2>When AI Meets MCP Meets Terraform Meets GitHub 🌪️</h2>
+        <div class="content">
+            <div class="meme-text">The Ultimate Developer Stack of 2025</div>
+            <div class="emoji">🤖🔧☁️🐙</div>
+            <p>It's like assembling the Avengers... if the Avengers occasionally destroyed entire cities while trying to save them</p>
+            <div class="code-block">
+                AI: "I'll help you deploy this"<br>
+                MCP: "I'll coordinate everything"<br>
+                Terraform: "I'll provision the infrastructure"<br>
+                GitHub: "I'll store the chaos"<br>
+                You: "Why is my AWS bill $47,000?"
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Common Scenarios -->
+    <div class="slide">
+        <h2>Common Scenarios (That We've All Been Through) 😅</h2>
+        <div class="content">
+            <p><strong>Scenario 1:</strong> AI writes Terraform code</p>
+            <div class="emoji">🤖➡️📝</div>
+            <p>"This HCL looks perfect!" <em>*deploys to production*</em> "Why do I have 500 load balancers?"</p>
+            
+            <p><strong>Scenario 2:</strong> MCP tries to help with GitHub integration</p>
+            <div class="emoji">🤝🐙</div>
+            <p>"Let me automate your commits!" <em>*commits sensitive data*</em> "Oops..."</p>
+            
+            <p><strong>Scenario 3:</strong> Everything works together</p>
+            <div class="emoji">🦄</div>
+            <p>This has never happened. If it has, please call NASA - they'll want to study you.</p>
+        </div>
+    </div>
+
+    <!-- Slide 9: The Developer's Journey -->
+    <div class="slide">
+        <h2>The Five Stages of Modern Development 🎭</h2>
+        <div class="content">
+            <p><strong>1. Denial:</strong> "AI will make this so easy!"</p>
+            <p><strong>2. Anger:</strong> "Why is my Terraform state corrupted?!"</p>
+            <p><strong>3. Bargaining:</strong> "Maybe if I just restart the MCP server..."</p>
+            <p><strong>4. Depression:</strong> "I should have been a farmer"</p>
+            <p><strong>5. Acceptance:</strong> "It's 3 AM and I'm debugging YAML again"</p>
+            <div class="emoji">😭➡️😌</div>
+            <div class="meme-text">We've all been there, friend</div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Best Practices -->
+    <div class="slide">
+        <h2>Best Practices (That We Ignore Under Pressure) 📋</h2>
+        <div class="content">
+            <p>✅ <strong>Test everything in staging first</strong></p>
+            <p><em>Reality: "It works on my machine, ship it!"</em></p>
+            
+            <p>✅ <strong>Use version control properly</strong></p>
+            <p><em>Reality: "git commit -m 'stuff'"</em></p>
+            
+            <p>✅ <strong>Document your infrastructure</strong></p>
+            <p><em>Reality: "The code IS the documentation"</em></p>
+            
+            <p>✅ <strong>Monitor your AI agents</strong></p>
+            <p><em>Reality: "YOLO, let the AI figure it out"</em></p>
+            
+            <div class="emoji">🤷‍♂️</div>
+        </div>
+    </div>
+
+    <!-- Slide 11: The Future -->
+    <div class="slide">
+        <h2>The Future is Bright (And Terrifying) 🔮</h2>
+        <div class="content">
+            <div class="meme-text">Coming Soon to a Terminal Near You:</div>
+            <div class="emoji">🚀</div>
+            <p>• AI that writes better Terraform than you</p>
+            <p>• MCP servers that actually work reliably</p>
+            <p>• GitHub Copilot that reads your mind</p>
+            <p>• Terraform that deploys without destroying everything</p>
+            <p>• Developers who actually read documentation</p>
+            <div class="emoji">🦄</div>
+            <p><em>*The last one is definitely fiction*</em></p>
+        </div>
+    </div>
+
+    <!-- Slide 12: Conclusion -->
+    <div class="slide">
+        <h2>Conclusion: Embrace the Chaos 🎉</h2>
+        <div class="content">
+            <div class="meme-text">Remember:</div>
+            <div class="emoji">🤗</div>
+            <p>• Your code doesn't have to be perfect</p>
+            <p>• Neither does your infrastructure</p>
+            <p>• AI makes mistakes (just like us)</p>
+            <p>• That's what makes us human... and developers</p>
+            <div class="code-block">
+                while (bugs.exist()) {<br>
+                &nbsp;&nbsp;coffee.drink();<br>
+                &nbsp;&nbsp;stackoverflow.search();<br>
+                &nbsp;&nbsp;try.again();<br>
+                }
+            </div>
+            <div class="meme-text">Thank you for surviving this presentation! 🎊</div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            // Hide current slide
+            slides[currentSlide].classList.remove('active');
+            
+            // Calculate new slide index
+            if (n >= totalSlides) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = n;
+            }
+            
+            // Show new slide
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Click navigation for touch devices
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('nav-btn')) {
+                return; // Let button handle it
+            }
+            
+            const rect = window.innerWidth;
+            if (e.clientX > rect / 2) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        });
+
+        // Initialize first slide
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>
